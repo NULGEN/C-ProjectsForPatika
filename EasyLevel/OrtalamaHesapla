@@ -1,1 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace PatikaCProjeleri
+{
+    internal class Program
+    {
+        private static int length;
+
+        static void Main(string[] args)
+        {
+            Console.Write("Fibonacci serisi kaç adet sayıdan oluşsun? : ");
+            int n = int.Parse(Console.ReadLine());
+            
+            //Iterative Yontem
+             Fibonacci(n);
+
+            //Recursive  Yontem
+            FibonacciRec(n);
+            
+        }
+
+        public static void Fibonacci(int sayi)
+        {
+            Console.WriteLine();
+            Console.WriteLine("---Iterasyon yöntemi----");
+            Console.WriteLine();
+            int a = 0, b = 1, c = 0;
+            Console.WriteLine("Fibonacci serisi elemanları: ");
+            Console.Write("{0} {1}", a,b);
+            List<int> FiboList = new List<int>();
+            FiboList.Add(a);
+            FiboList.Add(b);
+           
+
+            for (int i = 2; i < sayi; i++)
+            {
+                c = a + b;
+                Console.Write(" {0} ", c);
+                FiboList.Add(c);
+                a = b;
+                b = c;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Fibonacci serisi ortalaması: " + (double)FiboList.Sum()/FiboList.Count);
+            Console.WriteLine(  );
+
+        }
+        
+
+        public static int FibonacciSeries(int n)
+        {
+                 
+            if (n==0) return 0;
+
+            if (n==1) return 1;
+            
+            return FibonacciSeries(n - 1) + FibonacciSeries(n - 2);
+               
+        }
+
+        public static void FibonacciRec(int n)
+        {
+            Console.WriteLine("--Recursive Method--");
+            Console.WriteLine();
+            Console.WriteLine("Fibonacci serisi elemanları: ");
+            List<int> FibonacciList = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(" {0} ", FibonacciSeries(i));
+                FibonacciList.Add(FibonacciSeries(i));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Fiobacci Serisi Ortalaması : " + (double)FibonacciList.Sum()/(double)n);
+        }
+
+        
+       
+    }
+}
