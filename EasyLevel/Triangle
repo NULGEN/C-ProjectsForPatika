@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Triangle_Round
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {           
+            Triangle();
+        }
+    
+
+        public static void Triangle()
+        {
+            Console.WriteLine("Üçgen yüksekliğini giriniz: ");
+            int h= int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < h; i++)
+            {
+                for (int j = 0; j < h-i; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int j = 0; j <= i*2; j++)
+                {
+                    Console.Write("*");
+                }
+                for (int j = 0; j < h-i; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.WriteLine("");
+            }
+
+        }
+
+    }
+}
