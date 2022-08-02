@@ -1,1 +1,222 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MidLevel
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Hesapla();
+            }            
+        }
+        public static void Hesapla()
+        {
+            Menu();
+            Calistir();
+            
+        }
+        public static void Menu()
+        {
+            Console.WriteLine("İşlem yapılmak istenen geometrik şekli belirtiniz: ");
+            Console.WriteLine("(1) - Daire      ");
+            Console.WriteLine("(2) - Üçgen      ");
+            Console.WriteLine("(3) - Kare       ");
+            Console.WriteLine("(4) - Dikdörtgen ");
+            Console.WriteLine();
+           
+        }       
+
+        public static int SecimAl()
+        {
+            int secim = int.Parse(Console.ReadLine());
+            return secim;
+        }
+
+        public static void Calistir()
+        {
+            Console.WriteLine();
+
+            int secim=SecimAl();
+            switch (secim)
+            {
+                case 1:
+                    Daire();             
+                    break;
+                case 2:
+                    Ucgen();
+                    break;
+                case 3:
+                case 4:
+                    Dortgen();
+                    break;
+                default:
+                    //Console.WriteLine("Hatalı giriş yapıldı");
+                    //Environment.Exit(0);
+                    break;
+            }
+            Console.WriteLine();
+        }        
+
+        public static void HesaplamaSec()
+        {
+            Console.WriteLine();
+            Console.WriteLine("İşlem yapılmak istenen hesaplama yöntemi belirtiniz: ");
+            Console.WriteLine("(1) - Çevre Hesapla      ");
+            Console.WriteLine("(2) - Alan Hesapla     ");
+            Console.WriteLine("(3) - Hacim Hesapla     ");
+            Console.WriteLine();
+            
+        }
+        
+        public static void Dortgen()
+        {
+            Console.WriteLine("Birinci kenar için değer giriniz: ");
+            int kenar1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("İkinci kenar için değer giriniz: ");
+            int kenar2 = int.Parse(Console.ReadLine());
+            HesaplamaSec();
+            int hesap = SecimAl();
+            if (hesap==1)
+            {
+                Console.WriteLine("Dörtgen'in Çevresi: ");
+                Console.WriteLine(DortgenCevreHesapla(kenar1, kenar2)); 
+            }
+            else if (hesap==2)
+            {
+                Console.WriteLine("Dörtgen'in Alanı: ");
+                Console.WriteLine(DortgenAlanHesapla(kenar1, kenar2)); 
+            }
+            else
+            {
+                Console.WriteLine("Yükseklik değerini giriniz: ");
+                int h = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                Console.WriteLine("Dörtgen'in Hacmi: ");
+                Console.WriteLine(DortgenHacimHesapla(kenar1, kenar2, h)); 
+            }
+        }
+        public static void Daire()
+        {
+            Console.WriteLine("Daire yarı çapını giriniz: ");
+            int ycap = int.Parse(Console.ReadLine());
+            HesaplamaSec();
+            int hesap = SecimAl();
+            if (hesap==1)
+            {
+                Console.WriteLine("Daire'in Çevresi: ");
+                Console.WriteLine(DaireCevre(ycap));
+            }
+            else if(hesap==2)
+            {
+                Console.WriteLine("Dairenin Alanı: ");
+                Console.WriteLine(DaireAlan(ycap)); 
+            }
+            else
+            {
+                Console.WriteLine("Yükseklik değerini giriniz: ");
+                int h = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.WriteLine("Silindir Hacmi");
+                Console.WriteLine(SilindirHacim(ycap, h));
+            }
+        }
+        public static void Ucgen()
+        {
+            Console.WriteLine("Üçgen için birinci kenarı giriniz: ");
+            int kenar1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Üçgen için ikinci kenarı giriniz: ");
+            int kenar2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Üçgen için üçüncü kenarı giriniz: ");
+            int kenar3 = int.Parse(Console.ReadLine());
+
+            HesaplamaSec();
+            int hesap = SecimAl();
+            if (hesap == 1)
+            {
+                Console.WriteLine("Üçgenin Çevresi");
+                Console.WriteLine(UcgenCevreHesapla(kenar1, kenar2, kenar3)); 
+            }
+            else if (hesap == 2)
+            {
+                Console.WriteLine("Üçgen Alanı");
+                Console.WriteLine(UcgenAlanHesapla(kenar1, kenar2, kenar3));
+            }
+            else
+            {
+                Console.WriteLine("Yükseklik değerini giriniz: ");
+                int h = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.WriteLine("Piramit Hacmi");
+                Console.WriteLine(PiramitHacim(kenar1, kenar2, kenar3, h));
+                
+            }
+
+        }
+        public static int UcgenCevreHesapla(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+        public static double UcgenAlanHesapla(int a, int b, int c)
+        {
+            // s= yarı cevre
+            double s = (double)UcgenCevreHesapla(a, b, c) / 2;
+            double hesap = s * (s - a) * (s - b) * (s - c);
+            double alan = Math.Sqrt(hesap);
+            return alan;
+
+        }
+        public static double PiramitHacim(int a, int b, int c,int h)
+        {
+
+            double hacim = UcgenAlanHesapla(a, b, c) * h;
+
+            return hacim; 
+        }
+                
+
+        public static int DortgenAlanHesapla(int a, int b)
+        {
+            return a * b;
+        }
+        public static int DortgenCevreHesapla(int a, int b)
+        {
+            return (a + b) * 2;
+
+        }
+
+        public static int DortgenHacimHesapla(int a, int b, int c)
+        {
+            return a*b*c;
+        }
+        
+        public static double DaireCevre(int a)
+        {
+            double pi = 3.14;
+
+            return (2 * pi * a);
+        }
+        public static double DaireAlan(int a)
+        {
+            double pi = 3.14;
+
+            return pi * (a * a);
+        }
+
+        public static double SilindirHacim(int a, int b)
+        {
+            double pi = 3.14;
+
+            return pi * (a * a)* b;
+        }
+
+
+    }
+}
 
