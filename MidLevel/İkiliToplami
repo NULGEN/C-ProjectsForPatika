@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace İkililerinToplami
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            İkiliToplami();
+
+        }
+
+        public static void İkiliToplami()
+        {
+            try
+            {
+                Console.WriteLine("Aralarında boşluk bırakarak uzunluğu çift sayıda olan sayısal bir dizi giriniz :");
+                int[] Sayilar = Array.ConvertAll(Console.ReadLine().Trim().Split(' '),Convert.ToInt32);
+
+                if (Sayilar.Length%2==1)
+                {
+                    Console.WriteLine("Dizi uzunluğunu çift sayıda giriniz");
+                    İkiliToplami();
+                }
+                Console.WriteLine();
+                Console.WriteLine("İkili sayıların Toplamı: ");
+                Console.WriteLine();
+                for (int i = 0; i < Sayilar.Length; i=i+2)
+                {
+                    
+                    if (Sayilar[i] == Sayilar[i+1])
+                    { 
+                        Console.Write(Same(Sayilar[i], Sayilar[i + 1])+ " ");
+                    }
+                    else
+                    {
+                        Console.Write(NonSame(Sayilar[i], Sayilar[i+1])+ " ");
+                    }
+                }
+            }
+            catch (SystemException)
+            {
+                Message();
+                İkiliToplami();
+            }
+            
+
+        }
+
+        public static int NonSame(int a, int b)
+        {
+            return a + b;
+
+        }
+        public static int Same(int a, int b)
+        {
+            return (int)Math.Pow((a + b),2);
+
+        }
+        public static void Message()
+        {
+            Console.WriteLine(" Lütfen sayısal bir değer giriniz");
+        }
+    }
+}
