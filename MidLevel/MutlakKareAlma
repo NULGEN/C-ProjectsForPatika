@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace İkililerinToplami
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            MutlakKareAlma();
+        }
+
+        public static void MutlakKareAlma()
+        {
+            Console.WriteLine("10 ile 100 arasında sayı girişi yapınız");
+
+            int[] Sayilar = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
+            List<int> Kucuk = new List<int>();
+            List<int> Buyuk = new List<int>();
+
+            
+
+            for (int i = 0; i < Sayilar.Length; i++)
+            {
+                if (Sayilar[i]<67)
+                {
+                    int sayi = 67 - Sayilar[i];
+                    Kucuk.Add(sayi);
+                }
+                else if(Sayilar[i]>67)
+                {
+                    int sayi = (Sayilar[i] - 67);
+                    Buyuk.Add(sayi*sayi);
+                }
+
+            }
+            Console.WriteLine("67'den küçük sayıların toplamı : "+ Kucuk.Sum());
+            Console.WriteLine("67'den büyük sayıların toplamı : " + Buyuk.Sum());
+
+        }
+}
