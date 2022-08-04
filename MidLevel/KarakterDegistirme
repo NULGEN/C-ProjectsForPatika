@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace İkililerinToplami
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            KarakterDegistirme();
+        }
+        
+        public static void KarakterDegistirme()
+        {
+            Console.WriteLine("Bir metin girişi yapınız:  ");
+            string [] text = Console.ReadLine().Split(' ');
+
+
+            foreach (string s in text)
+            {
+                char[] chars = s.ToCharArray();
+                char temp=chars[0];
+                chars[0] = chars[chars.Length - 1];
+                chars[chars.Length - 1] = temp;
+
+                string x = "";
+                foreach (var item in chars)
+                {
+                    x += item.ToString();
+                   
+                }
+                Console.Write(x + " ");
+
+            }
+
+        }
+        }
