@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace İkililerinToplami
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            SessizHarf(); 
+        }
+        public static void SessizHarf()
+        {
+            Console.Write("Bir kelime giriniz: ");
+            string giris = Console.ReadLine().ToLower();
+            char[] kelime = giris.ToCharArray();
+                      
+            bool sonuc=false;
+
+
+         
+            for (int i = 0; i < kelime.Length; i++)
+            {
+                if (SesliMi(kelime[i]) == SesliMi(kelime[i + 1]))
+                {
+                    sonuc = true;
+                }
+                
+            }
+            Console.WriteLine(sonuc);
+
+
+        }
+        public static bool SesliMi(char x)
+        {
+            char[] sesli = { 'a', 'e', 'ı', 'i', 'o', 'ö', 'u', 'ü' };
+
+            for (int i = 0; i < sesli.Length; i++)
+            {
+                if (x != sesli[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        }
